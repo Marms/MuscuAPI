@@ -5,10 +5,8 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
-@Configuration
-@EnableJpaRepositories({ "fr.df.muscu.api.repositories" })
-@EntityScan({ "fr.df.muscu.api.model" })
-@ComponentScan({ "fr.df.muscu.api.services",  "fr.df.muscu.api.services.impl" })
+import fr.df.muscu.api.web.v1.ExopredefController;
+
 public interface Config {
 
 }

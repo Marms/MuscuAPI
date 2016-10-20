@@ -1,5 +1,6 @@
 package fr.df.muscu.api.service.impl;
 
+
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,7 +12,8 @@ import fr.df.muscu.api.service.ExerciceService;
 
 @Service
 public class ExerciceServiceImpl implements ExerciceService {
-
+	
+	
     @Autowired private ExerciceDao exerciceDao;
     
     @Override
@@ -23,6 +25,7 @@ public class ExerciceServiceImpl implements ExerciceService {
     @Override
     public List<Exercice> list() {
         return (List<Exercice>) exerciceDao.findAll();
+        
     }
 
     @Override

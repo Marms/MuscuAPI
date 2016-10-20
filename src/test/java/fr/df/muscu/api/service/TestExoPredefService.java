@@ -23,7 +23,6 @@ import org.junit.Before;
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringApplicationConfiguration(classes = {Config.class,  Main.class,
         ExoPredefServiceImpl.class })
-@Transactional
 public class TestExoPredefService {
 
     @Autowired private ExoPredefService exo;

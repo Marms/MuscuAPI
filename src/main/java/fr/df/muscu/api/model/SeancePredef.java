@@ -8,6 +8,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 
 import lombok.Builder;
@@ -26,8 +27,22 @@ public class SeancePredef {
     
     private String name;
     
-    @OneToMany(cascade=CascadeType.ALL)
+    @ManyToMany(cascade=CascadeType.MERGE)
     private List<ExoPredef> list = new ArrayList<>();
+
+    
+    public SeancePredef(){};
+    
+	public SeancePredef(String name) {
+		super();
+		this.name = name;
+	}
+
+	public SeancePredef(String name, List<ExoPredef> list) {
+		super();
+		this.name = name;
+		this.list = list;
+	}
 
 	public Integer getId() {
 		return id;

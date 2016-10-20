@@ -1,5 +1,6 @@
 package fr.df.muscu.api.service.impl;
 
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +16,9 @@ public class SeancesServiceImpl implements SeanceService {
     
     @Override
     public Seance save(Seance sc) {
+    	if (null == sc.getDate()) {
+    		sc.setDate(new Date());
+    	}
         return seanceDao.save(sc);
     }
 

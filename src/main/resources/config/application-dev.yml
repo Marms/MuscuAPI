@@ -8,14 +8,14 @@ spring:
         dataSourceClassName: com.mysql.jdbc.jdbc2.optional.MysqlDataSource
         url: jdbc:mysql://localhost:3306/carnetMuscu
         databaseName: carnetMuscu
-        serverName: 
+        serverName: localhost
         username: root
         password: root
     jpa:
         database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
         database: MYSQL
         show_sql: true
-        generate-ddl: true
+        generate-ddl: false
         hibernate:
-            ddl-auto: none
+#            ddl-auto: none
             naming-strategy: org.hibernate.cfg.EJB3NamingStrategy
