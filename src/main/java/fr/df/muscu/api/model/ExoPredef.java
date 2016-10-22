@@ -1,6 +1,13 @@
 package fr.df.muscu.api.model;
 
+import java.util.List;
+
+import javax.persistence.CollectionTable;
+import javax.persistence.Column;
+import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -21,6 +28,13 @@ public class ExoPredef {
     private String name;
     private String comment;
     private String image;
+    
+    @ElementCollection(targetClass=TypeExo.class)
+    @Enumerated(EnumType.STRING)
+    @CollectionTable(name="typeExo")
+    @Column(name="type") // Column name in person_interest
+    private List<TypeExo> type;
+    
 	public Integer getId() {
 		return id;
 	}
@@ -45,9 +59,11 @@ public class ExoPredef {
 	public void setImage(String image) {
 		this.image = image;
 	}
-    
-    
- 
-	
-	
+	public List<TypeExo> getType() {
+		return type;
+	}
+	public void setType(List<TypeExo> type) {
+		this.type = type;
+	}
+   	
 }
