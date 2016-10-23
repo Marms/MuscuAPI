@@ -13,6 +13,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
+import org.hibernate.annotations.Cascade;
+
 import lombok.Data;
 import lombok.ToString;
 
@@ -30,7 +32,7 @@ public class Seance {
     @ManyToOne
     private SeancePredef seancePredef;
     
-    @OneToMany(cascade=CascadeType.ALL)
+    @OneToMany(cascade={CascadeType.ALL})
     private List<Exercice> exercices = new ArrayList<>();
 
     
@@ -79,6 +81,51 @@ public class Seance {
 
 	public void setExercices(List<Exercice> exercices) {
 		this.exercices = exercices;
+	}
+
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((date == null) ? 0 : date.hashCode());
+		result = prime * result + ((exercices == null) ? 0 : exercices.hashCode());
+		result = prime * result + ((id == null) ? 0 : id.hashCode());
+		result = prime * result + ((seancePredef == null) ? 0 : seancePredef.hashCode());
+		return result;
+	}
+
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Seance other = (Seance) obj;
+		if (date == null) {
+			if (other.date != null)
+				return false;
+		} else if (!date.equals(other.date))
+			return false;
+		if (exercices == null) {
+			if (other.exercices != null)
+				return false;
+		} else if (!exercices.equals(other.exercices))
+			return false;
+		if (id == null) {
+			if (other.id != null)
+				return false;
+		} else if (!id.equals(other.id))
+			return false;
+		if (seancePredef == null) {
+			if (other.seancePredef != null)
+				return false;
+		} else if (!seancePredef.equals(other.seancePredef))
+			return false;
+		return true;
 	}
     
     
