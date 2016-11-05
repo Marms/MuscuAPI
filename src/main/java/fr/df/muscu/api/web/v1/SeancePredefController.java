@@ -17,7 +17,6 @@ import fr.df.muscu.api.model.ExoPredef;
 import fr.df.muscu.api.model.SeancePredef;
 import fr.df.muscu.api.service.ExoPredefService;
 import fr.df.muscu.api.service.SeancePredefService;
-import fr.df.muscu.api.web.SeancepredefControllerTest;
 
 @RestController
 public class SeancePredefController {
