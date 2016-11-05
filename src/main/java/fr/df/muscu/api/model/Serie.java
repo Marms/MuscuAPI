@@ -18,6 +18,15 @@ public class Serie extends Cloneable {
     private int numero;
     private double poids;
     private double nbRepeat;
+    /** temps repos avant series en secondes */
+    private int repos;
+    
+	public int getRepos() {
+		return repos;
+	}
+	public void setRepos(int repos) {
+		this.repos = repos;
+	}
 	public int getNumero() {
 		return numero;
 	}
