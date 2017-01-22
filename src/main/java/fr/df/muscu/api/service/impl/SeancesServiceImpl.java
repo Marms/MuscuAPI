@@ -32,7 +32,7 @@ public class SeancesServiceImpl implements SeanceService {
 
     @Override
     public List<Seance> list() {
-        return (List<Seance>) seanceDao.findAll();
+        return (List<Seance>) seanceDao.findAllByOrderByDateAsc();
     }
 
     @Override
