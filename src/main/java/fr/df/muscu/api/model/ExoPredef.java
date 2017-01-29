@@ -23,8 +23,7 @@ import lombok.ToString;
 public class ExoPredef {
 
     @Id
-    @GeneratedValue(strategy=GenerationType.AUTO)
-    private Integer id;
+    private String id;
     private String name;
     private String comment;
     private String image;
@@ -35,11 +34,11 @@ public class ExoPredef {
     @Column(name="type") // Column name in person_interest
     private List<TypeExo> type;
     
-	public Integer getId() {
+	public String getId() {
 		return id;
 	}
 
-	public void setId(Integer id) {
+	public void setId(String id) {
 		this.id = id;
 	}
 	public String getName() {

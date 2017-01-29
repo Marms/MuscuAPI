@@ -64,7 +64,7 @@ public class SeancepredefControllerTest {
 		RestTemplate rest = new RestTemplate();
 		
 		ExoPredef exo = new ExoPredef();
-		exo.setId(1);
+		exo.setId("1");
 		
 		SeancePredef test = new SeancePredef();
 		test.setName("epaule");

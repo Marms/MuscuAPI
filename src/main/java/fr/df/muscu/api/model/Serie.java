@@ -15,7 +15,7 @@ import lombok.Data;
 @Embeddable
 public class Serie extends Cloneable {
 
-    private int numero;
+    private Integer numero;
     private double poids;
     private double nbRepeat;
     /** temps repos avant series en secondes */
@@ -27,10 +27,10 @@ public class Serie extends Cloneable {
 	public void setRepos(int repos) {
 		this.repos = repos;
 	}
-	public int getNumero() {
+	public Integer getNumero() {
 		return numero;
 	}
-	public void setNumero(int numero) {
+	public void setNumero(Integer numero) {
 		this.numero = numero;
 	}
 	public double getPoids() {

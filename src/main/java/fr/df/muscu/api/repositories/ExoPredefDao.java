@@ -4,5 +4,6 @@ import org.springframework.data.repository.CrudRepository;
 
 import fr.df.muscu.api.model.ExoPredef;
 
-public interface ExoPredefDao extends CrudRepository<ExoPredef, Integer> {
+public interface ExoPredefDao extends CrudRepository<ExoPredef, String> {
+
 }

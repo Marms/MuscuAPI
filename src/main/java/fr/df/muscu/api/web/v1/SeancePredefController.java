@@ -72,7 +72,7 @@ public class SeancePredefController {
      * @param exoId
      */
     @RequestMapping(value="/v1/seancepredef/{id}/exopredef/{exoPredef}", method = RequestMethod.POST, consumes = {MediaType.APPLICATION_JSON_VALUE})
-    public void addExoPredefById(@PathVariable("id") int id, @PathVariable("exoPredef") int exoId) {
+    public void addExoPredefById(@PathVariable("id") int id, @PathVariable("exoPredef") String  exoId) {
     	SeancePredef seance = seancepredefService.find(id);
     	if (null != seance) {
     		ExoPredef exoPredef = exopredefService.find(exoId);

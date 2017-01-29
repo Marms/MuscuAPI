@@ -42,7 +42,7 @@ public class ExopredefController {
 	
     
     @RequestMapping(value="/v1/exopredef/{id}", method = RequestMethod.GET, produces = {MediaType.APPLICATION_JSON_VALUE})
-    public @ResponseBody ExoPredef getSingle(@PathVariable("id") Integer id) {
+    public @ResponseBody ExoPredef getSingle(@PathVariable("id") String id) {
     	System.out.println("id = "+id);
     	Optional<ExoPredef> exo = Optional.of(exoPredefService.find(id));
     	if(exo.isPresent()) {

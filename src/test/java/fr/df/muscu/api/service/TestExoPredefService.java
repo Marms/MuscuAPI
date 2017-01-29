@@ -63,7 +63,7 @@ public class TestExoPredefService {
     public void testDelete() {
         exo.save(ex1);
         exo.delete(ex1);
-        Assert.assertTrue(exo.find(ex1.getId()) == null);
+        Assert.assertTrue(exo.find(ex1.getId()).equals(""));
     }
    
 }
