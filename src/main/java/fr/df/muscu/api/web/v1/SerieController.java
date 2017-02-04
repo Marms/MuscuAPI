@@ -61,7 +61,7 @@ public class SerieController {
      * @return 
      * @throws Exception 
      */
-    @RequestMapping(value="/v1/seance/{seanceId}/exercice/{exerciceId}/serie/{serieId}")
+    @RequestMapping(value="/v1/seance/{seanceId}/exercice/{exerciceId}/serie/{serieId}", method= RequestMethod.PATCH, consumes = {MediaType.APPLICATION_JSON_VALUE})
     public @ResponseBody Serie updateSerie (@PathVariable("seanceId") Integer scId, @PathVariable("exerciceId") Integer exId, @PathVariable("serieId") Integer serieId, @RequestBody Serie serie) throws Exception {
     	Exercice ex = getExercice(exId);
         Serie s = getSerie(ex, serie);
@@ -72,16 +72,17 @@ public class SerieController {
         return s;    	
     }
    
-    @RequestMapping(value="/v1/seance/{seanceId}/exercice/{exerciceId}/serie/{numero}")
-    public @ResponseBody Serie deleteSerie(@PathVariable("seanceId") Integer scId, @PathVariable("exerciceId") Integer exId, @PathVariable("numero") Integer numero) throws Exception {
+    @RequestMapping(value="/v1/seance/{seanceId}/exercice/{exerciceId}/serie/{numero}", method= RequestMethod.DELETE)
+    public @ResponseBody Exercice deleteSerie(@PathVariable("seanceId") Integer scId, @PathVariable("exerciceId") Integer exId, @PathVariable("numero") Integer numero) throws Exception {
     	Exercice ex = getExercice(exId);
     	// modification des numero de serie de la serie
     	Serie s = ex.getSeries().get(numero);
     	for (int i= numero +1; i < ex.getSeries().size(); i++) {
     		ex.getSeries().get(i).setNumero(i-1);
     	}
-    	ex.getSeries().remove(numero);
-    	return s;
+    	ex.getSeries().remove(s);
+    	exerciceService.save(ex);
+    	return ex;
     }
 
     private Exercice getExercice(Integer exId) throws Exception {
@@ -93,7 +94,7 @@ public class SerieController {
     }
 
     private Serie getSerie(Exercice ex, Serie serie) throws Exception{
-   	 	if (null != serie.getNumero()) {
+   	 	if (null == serie.getNumero()) {
         	throw new Exception("la serie n'existe pas");
         }
    	 	return ex.getSeries().get(serie.getNumero());
