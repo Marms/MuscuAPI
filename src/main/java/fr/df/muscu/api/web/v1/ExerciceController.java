@@ -1,7 +1,9 @@
 package fr.df.muscu.api.web.v1;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
+import java.util.List;
 import java.util.Optional;
 
 import org.apache.commons.lang3.StringUtils;
@@ -11,15 +13,18 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import fr.df.muscu.api.model.Exercice;
 import fr.df.muscu.api.model.ExoPredef;
 import fr.df.muscu.api.model.Seance;
+import fr.df.muscu.api.model.Serie;
 import fr.df.muscu.api.service.ExerciceService;
 import fr.df.muscu.api.service.ExoPredefService;
 import fr.df.muscu.api.service.SeanceService;
+import fr.df.muscu.api.service.impl.ExerciceServiceImpl;
 
 @RestController
 public class ExerciceController {
@@ -119,5 +124,29 @@ public class ExerciceController {
 			}
 		}
 		return exo;
+	}
+	
+	 /**
+     * Permet de recuperer toutes les series effectuee sur ce template
+     * si le seancePredefId est fournit ne recupere uniquement les serie effectuee ce template pour le type de seance 
+     */
+    @RequestMapping(value= "/v1/exercice/{exoPredefId}/list", method = RequestMethod.GET, produces = {MediaType.APPLICATION_JSON_VALUE})
+	public @ResponseBody Collection<Exercice> getOldSerie(@PathVariable("exoPredefId") String exoPredefId, @RequestParam(value="scPredefId", required=false) String scPredefId ) throws Exception {
+    	Collection<Exercice> list = new ArrayList<>();
+    	if (null != scPredefId) {
+    		System.out.println("recherche par seance");
+    		// recherche de toutes les seance
+    		throw new Exception("not implemented yet");
+    		// recuperation de tout les exercices comportant le scId
+    	} else {
+    		ExoPredef exo = exoPredefService.find(exoPredefId);
+    		if (null == exo) {
+    			throw new Exception("l exoPredef n'existe pas");
+    		}
+    		//recuperation de tout les exercice ayant cet exoPredefId;
+    		list = exerciceService.listByExoPredef(exo);
+    	}
+    	System.out.println("Exercice size " + list.size());
+		return list;
 	}
 }

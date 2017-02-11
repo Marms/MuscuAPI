@@ -1,12 +1,14 @@
 package fr.df.muscu.api.service.impl;
 
 
+import java.util.Collection;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import fr.df.muscu.api.model.Exercice;
+import fr.df.muscu.api.model.ExoPredef;
 import fr.df.muscu.api.repositories.ExerciceDao;
 import fr.df.muscu.api.service.ExerciceService;
 
@@ -43,6 +45,11 @@ public class ExerciceServiceImpl implements ExerciceService {
     @Override
     public void delete(Integer id) {
         exerciceDao.delete(id);
+    }
+
+    @Override
+    public Collection<Exercice> listByExoPredef(ExoPredef exo) {
+    	return exerciceDao.findByExoPredefOrderByDateAsc(exo);
     }
 
 }
