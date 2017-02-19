@@ -21,6 +21,14 @@ public class Serie extends Cloneable {
     /** temps repos avant series en secondes */
     private int repos;
     
+    private Character unilateral;
+    
+	public Character getUnilateral() {
+		return unilateral;
+	}
+	public void setUnilateral(Character unilateral) {
+		this.unilateral = unilateral;
+	}
 	public int getRepos() {
 		return repos;
 	}
