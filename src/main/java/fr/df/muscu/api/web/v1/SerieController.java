@@ -81,7 +81,11 @@ public class SerieController {
     		ex.getSeries().get(i).setNumero(i-1);
     	}
     	ex.getSeries().remove(s);
-    	exerciceService.save(ex);
+    	if (ex.getSeries().size() == 0) {
+    		exerciceService.delete(ex);
+    	} else {    		
+    		exerciceService.save(ex);
+    	}
     	return ex;
     }
 
