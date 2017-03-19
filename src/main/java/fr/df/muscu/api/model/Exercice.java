@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.CollectionTable;
 import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
@@ -11,6 +12,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
 
@@ -25,9 +28,11 @@ public class Exercice {
     @OneToOne
     private ExoPredef exoPredef;
     
-    @ElementCollection
-    @CollectionTable(name="SERIES", joinColumns=@JoinColumn(name="Owner_id"))
-     private List<Serie> series = new ArrayList<>();
+//    @ElementCollection
+//    @CollectionTable(name="SERIES", joinColumns=@JoinColumn(name="Owner_id"))
+    @OneToMany(cascade={CascadeType.ALL}) 
+    private List<Serie> series = new ArrayList<>();
+     
     
     private Date date;
     

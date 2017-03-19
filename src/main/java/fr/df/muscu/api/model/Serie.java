@@ -1,9 +1,13 @@
 package fr.df.muscu.api.model;
 
 import javax.persistence.Embeddable;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
+import javax.persistence.OneToOne;
 
 import org.crsh.plugin.Embedded;
 import org.hibernate.internal.util.Cloneable;
@@ -12,9 +16,13 @@ import lombok.Data;
 
 /** object embarqué dans l'object Exercices **/
 @Data
-@Embeddable
+@Entity
 public class Serie extends Cloneable {
-
+	
+	@Id
+	@GeneratedValue(strategy=GenerationType.AUTO)
+	private Integer id;
+	
     private Integer numero;
     private double poids;
     private double nbRepeat;
@@ -22,6 +30,9 @@ public class Serie extends Cloneable {
     private int repos;
     
     private Character unilateral;
+    
+    @OneToOne
+    private Serie serie;
     
 	public Character getUnilateral() {
 		return unilateral;
