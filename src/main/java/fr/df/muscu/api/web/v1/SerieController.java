@@ -68,6 +68,7 @@ public class SerieController {
         s.setPoids(serie.getPoids());
         s.setNbRepeat(serie.getNbRepeat());
         s.setRepos(serie.getRepos());
+        s.setSerie(serie.getSerie());
         exerciceService.save(ex);
         return s;    	
     }
