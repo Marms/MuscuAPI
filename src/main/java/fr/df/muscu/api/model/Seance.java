@@ -27,6 +27,8 @@ public class Seance {
     @GeneratedValue(strategy=GenerationType.AUTO)
     private Integer id;
   
+    private String name;
+    
     private Date date;
     
     @ManyToOne
@@ -35,6 +37,8 @@ public class Seance {
     @OneToMany(cascade={CascadeType.ALL})
     private List<Exercice> exercices = new ArrayList<>();
 
+    @OneToMany(cascade={CascadeType.ALL})
+    private List<Salle> salles;
     
     public Seance() {}
     
@@ -81,6 +85,24 @@ public class Seance {
 
 	public void setExercices(List<Exercice> exercices) {
 		this.exercices = exercices;
+	}
+
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public List<Salle> getSalles() {
+		return salles;
+	}
+
+
+	public void setSalles(List<Salle> salles) {
+		this.salles = salles;
 	}
 
 
