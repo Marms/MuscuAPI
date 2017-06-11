@@ -1,6 +1,8 @@
 package fr.df.muscu.api.web.v1;
 
 import java.util.Collection;
+import java.util.List;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
@@ -13,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import fr.df.muscu.api.model.Exercice;
 import fr.df.muscu.api.model.ExoPredef;
+import fr.df.muscu.api.model.Salle;
 import fr.df.muscu.api.model.Seance;
 import fr.df.muscu.api.service.ExoPredefService;
 import fr.df.muscu.api.service.SeanceService;
@@ -90,4 +93,19 @@ public class SeanceController {
     	seanceService.save(sc);
     }
 
+    /**
+     * Ajoute des salle à la seance
+     * @throws Exception 
+     */
+    @RequestMapping(value="/v1/seance/{scId}/salle", method = RequestMethod.POST)
+    public void addSallesToSeance(@PathVariable("scId") Integer scId, @RequestBody List<Salle> salles) throws Exception {
+    	Seance sc = seanceService.find(scId);
+    	if (null == sc) {
+    		throw new Exception("La seance n'existe pas");
+    	}
+    	// ne garder que les salles non présente dans la nouvelle list
+   		sc.setSalles(sc.getSalles().stream().filter(x -> !salles.contains(x)).collect(Collectors.toList()));
+   		sc.getSalles().addAll(salles);
+   		seanceService.save(sc);
+    }
 }

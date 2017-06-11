@@ -12,9 +12,11 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import fr.df.muscu.api.model.Exercice;
+import fr.df.muscu.api.model.Seance;
 import fr.df.muscu.api.model.Serie;
 import fr.df.muscu.api.service.ExerciceService;
 import fr.df.muscu.api.service.SeanceService;
+import fr.df.muscu.api.service.SerieService;
 
 @RestController
 public class SerieController {
@@ -69,9 +71,19 @@ public class SerieController {
         s.setNbRepeat(serie.getNbRepeat());
         s.setRepos(serie.getRepos());
         s.setSerie(serie.getSerie());
+        s.setLeste(serie.getLeste());
+        s.setNeg(serie.getNeg());
+        s.setForcer(serie.getForcer());
+        s.setComment(serie.getComment());
+        s.setMinute(serie.getMinute());
+        s.setSeconde(serie.getSeconde());
+        s.setType(serie.getType());
         exerciceService.save(ex);
         return s;    	
     }
+    
+    @Autowired
+    private SerieService serieSerie;
    
     @RequestMapping(value="/v1/seance/{seanceId}/exercice/{exerciceId}/serie/{numero}", method= RequestMethod.DELETE)
     public @ResponseBody Exercice deleteSerie(@PathVariable("seanceId") Integer scId, @PathVariable("exerciceId") Integer exId, @PathVariable("numero") Integer numero) throws Exception {
@@ -82,10 +94,12 @@ public class SerieController {
     		ex.getSeries().get(i).setNumero(i-1);
     	}
     	ex.getSeries().remove(s);
+    	exerciceService.save(ex);
+    	serieSerie.delete(s.getId());
     	if (ex.getSeries().size() == 0) {
+    		seanceService.deleteExoFromSeance(ex, scId);
     		exerciceService.delete(ex);
-    	} else {    		
-    		exerciceService.save(ex);
+    		ex = null;
     	}
     	return ex;
     }

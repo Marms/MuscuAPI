@@ -24,7 +24,7 @@ import fr.df.muscu.api.model.Serie;
 import fr.df.muscu.api.service.ExerciceService;
 import fr.df.muscu.api.service.ExoPredefService;
 import fr.df.muscu.api.service.SeanceService;
-import fr.df.muscu.api.service.impl.ExerciceServiceImpl;
+import fr.df.muscu.api.service.SerieService;
 
 @RestController
 public class ExerciceController {
@@ -38,6 +38,8 @@ public class ExerciceController {
 	@Autowired
 	private SeanceService seanceService;
 
+	@Autowired
+	private SerieService serieSvc;
 	/**
 	 * Permet de retourner les exercices appartenant a une seance fournis en
 	 * parametre
@@ -149,4 +151,29 @@ public class ExerciceController {
     	System.out.println("Exercice size " + list.size());
 		return list;
 	}
+    
+    @RequestMapping(value="/v1/seance/{seanceId}/exercice/{exerciceId}", method = RequestMethod.DELETE, produces = {MediaType.APPLICATION_JSON_VALUE})
+    public @ResponseBody Exercice deleteExo(@PathVariable("seanceId") Integer seanceId, @PathVariable("exerciceId") Integer exerciceId) throws Exception {
+    	// recuperation de l'exo
+    	Exercice ex = exerciceService.find(exerciceId);
+    	if (null == ex) {
+    		throw new Exception("l exercice n'existe pas");
+    	}
+    	// suppression de tous les exercices
+    	List<Serie> listSerie = ex.getSeries();
+    	
+    	ex.setSeries(new ArrayList<>());
+    	exerciceService.save(ex);
+    	if (null != listSerie && listSerie.size() > 0) {
+    	for (Serie s:listSerie) {
+    		serieSvc.delete(s.getId());
+    	}}
+    	// suppression de l'exo
+    	Seance seance = seanceService.find(seanceId);
+    	seance.getExercices().remove(ex);
+    	seanceService.save(seance);
+    	exerciceService.delete(ex);
+    	return ex;
+    	
+    }
 }

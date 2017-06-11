@@ -3,8 +3,6 @@ package fr.df.muscu.api.service.impl;
 import java.util.Date;
 import java.util.List;
 
-import javax.transaction.Transactional;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -37,7 +35,6 @@ public class SeancesServiceImpl implements SeanceService {
 
     @Override
     public Seance find(Integer id) {
-
         return seanceDao.findOne(id);
     }
 
@@ -51,4 +48,10 @@ public class SeancesServiceImpl implements SeanceService {
         seanceDao.delete(id);
     }
 
+	@Override
+	public void deleteExoFromSeance(Exercice ex, Integer scId) {
+	    Seance sc = find(scId);
+		sc.getExercices().remove(ex);
+		save(sc);
+	}
 }
