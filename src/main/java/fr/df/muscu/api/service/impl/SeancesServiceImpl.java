@@ -4,6 +4,8 @@ import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import fr.df.muscu.api.model.Exercice;
@@ -29,8 +31,8 @@ public class SeancesServiceImpl implements SeanceService {
     }
 
     @Override
-    public List<Seance> list() {
-        return (List<Seance>) seanceDao.findAllByOrderByDateAsc();
+    public Page<Seance> list(Pageable page) {
+        return (Page<Seance>) seanceDao.findAllByOrderByDateAsc(page);
     }
 
     @Override

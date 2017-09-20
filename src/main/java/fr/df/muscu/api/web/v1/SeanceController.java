@@ -1,19 +1,18 @@
 package fr.df.muscu.api.web.v1;
 
-import java.time.LocalTime;
-import java.util.Calendar;
+import java.net.URISyntaxException;
 import java.util.Collection;
-import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.format.datetime.joda.LocalTimeParser;
+import org.springframework.data.domain.Page;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -40,10 +39,14 @@ public class SeanceController {
 	 * @return
 	 */
     @RequestMapping(value= "/v1/seance/list", method = RequestMethod.GET, produces = {MediaType.APPLICATION_JSON_VALUE})
-	public @ResponseBody Collection<Seance> get() {
-		Collection<Seance> list = seanceService.list();
-		System.out.println("seance size " + list.size());
-		return list;
+	public @ResponseBody Page<Seance> get(@RequestParam(value = "page", required = false) Integer offset,
+            @RequestParam(value = "per_page", required = false) Integer limit)
+                    throws URISyntaxException {
+		Page<Seance> page = seanceService.list(
+				PaginationUtil.generatePageRequest(offset, limit));
+		
+		System.out.println("seance size " + page.getNumberOfElements());
+		return page;
 	}
     
     /**
