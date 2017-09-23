@@ -1,7 +1,7 @@
 package fr.df.muscu.api.repositories;
 
-import java.util.Collection;
-
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.repository.CrudRepository;
 
 import fr.df.muscu.api.model.Exercice;
@@ -14,5 +14,5 @@ public interface ExerciceDao extends CrudRepository<Exercice  ,Integer>{
 	 * @param exo
 	 * @return
 	 */
-	Collection<Exercice> findByExoPredefOrderByDateAsc(ExoPredef exo);
+	Page<Exercice> findByExoPredefOrderByDateDesc(Pageable page, ExoPredef exo);
 }

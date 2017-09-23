@@ -8,6 +8,7 @@ import java.util.Optional;
 
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -133,8 +134,11 @@ public class ExerciceController {
      * si le seancePredefId est fournit ne recupere uniquement les serie effectuee ce template pour le type de seance 
      */
     @RequestMapping(value= "/v1/exercice/{exoPredefId}/list", method = RequestMethod.GET, produces = {MediaType.APPLICATION_JSON_VALUE})
-	public @ResponseBody Collection<Exercice> getOldSerie(@PathVariable("exoPredefId") String exoPredefId, @RequestParam(value="scPredefId", required=false) String scPredefId ) throws Exception {
-    	Collection<Exercice> list = new ArrayList<>();
+	public @ResponseBody Page<Exercice> getOldSerie(@PathVariable("exoPredefId") String exoPredefId, @RequestParam(value="scPredefId", required=false) String scPredefId 
+			,@RequestParam(value = "page", required = false) Integer offset
+			,   @RequestParam(value = "per_page", required = false) Integer limit
+			) throws Exception {
+    	Page<Exercice> list;
     	if (null != scPredefId) {
     		System.out.println("recherche par seance");
     		// recherche de toutes les seance
@@ -146,9 +150,9 @@ public class ExerciceController {
     			throw new Exception("l exoPredef n'existe pas");
     		}
     		//recuperation de tout les exercice ayant cet exoPredefId;
-    		list = exerciceService.listByExoPredef(exo);
+    		list = exerciceService.listByExoPredef(PaginationUtil.generatePageRequest(offset, limit), exo);
     	}
-    	System.out.println("Exercice size " + list.size());
+    	System.out.println("Exercice size " + list.getNumberOfElements());
 		return list;
 	}
     

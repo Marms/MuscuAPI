@@ -1,10 +1,11 @@
 package fr.df.muscu.api.service.impl;
 
 
-import java.util.Collection;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import fr.df.muscu.api.model.Exercice;
@@ -48,8 +49,8 @@ public class ExerciceServiceImpl implements ExerciceService {
     }
 
     @Override
-    public Collection<Exercice> listByExoPredef(ExoPredef exo) {
-    	return exerciceDao.findByExoPredefOrderByDateAsc(exo);
+    public Page<Exercice> listByExoPredef(Pageable pageable, ExoPredef exo) {
+    	return exerciceDao.findByExoPredefOrderByDateDesc(pageable, exo);
     }
 
 }

@@ -1,7 +1,9 @@
 package fr.df.muscu.api.service;
 
-import java.util.Collection;
 import java.util.List;
+
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 
 import fr.df.muscu.api.model.Exercice;
 import fr.df.muscu.api.model.ExoPredef;
@@ -12,5 +14,5 @@ public interface ExerciceService {
     Exercice find (Integer id);
     void delete(Exercice exo);
     void delete(Integer id);
-	Collection<Exercice> listByExoPredef(ExoPredef exo);
+	Page<Exercice> listByExoPredef(Pageable page, ExoPredef exo);
 }
