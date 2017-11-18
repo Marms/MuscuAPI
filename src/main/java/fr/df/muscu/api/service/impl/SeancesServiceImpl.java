@@ -25,6 +25,7 @@ public class SeancesServiceImpl implements SeanceService {
     		sc.setDate(new Date());
     	}
     	for(Exercice ex : sc.getExercices()) {
+    		ex.setDate(sc.getDate());
     		exo.save(ex);
     	}
         return seanceDao.save(sc);
