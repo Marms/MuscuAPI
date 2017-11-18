@@ -6,7 +6,7 @@
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>1.5.7.RELEASE</version>
+		<version>1.4.1.RELEASE</version>
 	</parent>
 
 	<groupId>fr.df.muscu</groupId>
@@ -18,6 +18,7 @@
 
 	<properties>
 		<java.version>1.8</java.version>
+		<hibernate.version>4.3.6.Final</hibernate.version>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<docker.image.prefix>springio</docker.image.prefix>
 	</properties>
@@ -33,6 +34,7 @@
 		<dependency>
 			<groupId>mysql</groupId>
 			<artifactId>mysql-connector-java</artifactId>
+			<version>5.1.6</version>
 		</dependency>
 
 		<dependency>
@@ -47,6 +49,7 @@
 		<dependency>
 			<groupId>org.projectlombok</groupId>
 			<artifactId>lombok</artifactId>
+			<version>1.16.10</version>
 		</dependency>
 
 		<dependency>
@@ -73,6 +76,7 @@
 		<dependency>
 			<groupId>com.h2database</groupId>
 			<artifactId>h2</artifactId>
+			<version>1.4.187</version>
 		</dependency>
 
 		<dependency>
