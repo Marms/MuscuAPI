@@ -1,0 +1,9 @@
+server:
+    port: 9000
+
+spring:
+    profiles:
+        active: test
+    jpa:
+        show_sql: true
+        generate-ddl: true

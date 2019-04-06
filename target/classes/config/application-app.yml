@@ -1,0 +1,23 @@
+server:
+    port: 9009
+
+spring:
+    profiles:
+        active: dev
+    datasource:
+        dataSourceClassName: com.mysql.jdbc.jdbc2.optional.MysqlDataSource
+        url: jdbc:${CLEARDB_DATABASE_URL}
+        databaseName: ${JDBC_DATABASE_DATABASENAME}
+        serverName: ${JDBC_DATABASE_SERVERNAME}
+        username: ${JDBC_DATABASE_USERNAME}
+        password: ${JDBC_DATABASE_PASSWORD}
+    jpa:
+        database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
+        database: MYSQL
+        show_sql: false
+        generate-ddl: true
+        hibernate:
+#           ddl-auto: none
+            naming-strategy: org.hibernate.cfg.EJB3NamingStrategy
+            
+            

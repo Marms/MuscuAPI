@@ -24,7 +24,6 @@ public class SeancePredef {
     @Id
     @GeneratedValue(strategy=GenerationType.AUTO)
     private Integer id;
-    
     private String name;
     
     @ManyToMany(cascade=CascadeType.MERGE)

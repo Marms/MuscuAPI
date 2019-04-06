@@ -1,0 +1,22 @@
+server:
+    port: 9009
+
+spring:
+    profiles:
+        active: dev
+    datasource:
+        dataSourceClassName: com.mysql.jdbc.jdbc2.optional.MysqlDataSource
+        #url: jdbc:mysql://89.86.152.41:3306/carnetMuscu
+        url: jdbc:mysql://192.168.1.19:3306/carnetMuscu
+        databaseName: carnetMuscu
+        #serverName: localhost
+        username: admin2
+        password: raspi
+    jpa:
+        database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
+        database: MYSQL
+        show_sql: true
+        generate-ddl: false
+        hibernate:
+            ddl-auto: none
+            naming-strategy: org.hibernate.cfg.EJB3NamingStrategy

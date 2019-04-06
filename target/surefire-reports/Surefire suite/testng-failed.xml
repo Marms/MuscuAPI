@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite thread-count="1" verbose="0" name="Failed suite [Surefire suite]" junit="true">
+  <test name="Surefire test(failed)" junit="true">
+    <classes>
+      <class name="fr.df.muscu.api.web.ExopredefControllerTest">
+        <methods>
+          <include name="secondTest"/>
+          <include name="test"/>
+        </methods>
+      </class> <!-- fr.df.muscu.api.web.ExopredefControllerTest -->
+      <class name="fr.df.muscu.api.web.SeancepredefControllerTest">
+        <methods>
+          <include name="testSaveSeanceWithExistingExoPredef"/>
+          <include name="testAddExoPredef"/>
+          <include name="testSaveSeanceWithNewExoPredef"/>
+          <include name="test"/>
+          <include name="secondTest"/>
+        </methods>
+      </class> <!-- fr.df.muscu.api.web.SeancepredefControllerTest -->
+    </classes>
+  </test> <!-- Surefire test(failed) -->
+</suite> <!-- Failed suite [Surefire suite] -->
