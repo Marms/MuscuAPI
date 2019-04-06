@@ -14,7 +14,7 @@ import fr.df.config.Constants;
 //@Configuration
 @EnableJpaRepositories({ "fr.df.muscu.api.repositories" })
 @EntityScan({ "fr.df.muscu.api.model" })
-@ComponentScan(basePackages = { "fr.df.muscu.api.service", "fr.df.muscu.api.service.impl", "fr.df.muscu.api.web.v1" })
+@ComponentScan(basePackages = { "fr.df.muscu.api.service", "fr.df.muscu.api.service.impl", "fr.df.muscu.api.web.v1" , "fr.df.muscu.api.web.v2" })
 
 public class Main {
 

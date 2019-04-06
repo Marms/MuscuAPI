@@ -18,7 +18,10 @@ import java.net.URISyntaxException;
  * header)</a>.
  * </p>
  */
-public class PaginationUtil {
+public class
+
+
+PaginationUtil {
     public static final int ONE = 1;
 
     public static final int DEFAULT_OFFSET = ONE;

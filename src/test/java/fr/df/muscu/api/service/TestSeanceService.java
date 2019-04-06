@@ -82,7 +82,6 @@ public class TestSeanceService {
     public void testList() {
         seanceService.save(sc);
         
-//        List<Seance> list = seanceService.list();
 //        Assert.assertTrue(list.size()> 0);
     }
 
