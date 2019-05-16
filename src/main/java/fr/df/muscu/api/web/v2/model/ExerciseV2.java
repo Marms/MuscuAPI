@@ -16,7 +16,6 @@ public class ExerciseV2 {
     Date date;
     int numero;
 
-
     public Exercice toV1() {
         Exercice e = new Exercice();
         e.setExoPredef(this.template.toV1());
@@ -35,6 +34,7 @@ public class ExerciseV2 {
         v.setTemplate(ExerciceTemplateV2.toV2(o.getExoPredef()));
         v.setDate(o.getDate());
         v.setNumero(o.getNumero());
+
         return v;
     }
 }
